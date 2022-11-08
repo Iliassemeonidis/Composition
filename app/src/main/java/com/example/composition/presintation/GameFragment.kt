@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.composition.R
 import com.example.composition.databinding.FragmentGameBinding
 import com.example.composition.domain.entity.GameResult
@@ -135,10 +136,7 @@ class GameFragment : Fragment() {
 
 
     private fun startGameFinishedFragment(gameResult: GameResult) {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.main_container, GameFinishedFragment.newInstance(gameResult))
-            .addToBackStack(null)
-            .commitAllowingStateLoss()
+        findNavController().navigate(R.id.action_gameFragment_to_gameFinishedFragment,GameFinishedFragment.newInstance(gameResult).arguments)
     }
 
     private fun parsArguments() {
